@@ -1,0 +1,4 @@
+pulsectl>=21.10.5
+pyqt5 >= 5.15
+var_dump>=1.2
+pylint>=2.6.0

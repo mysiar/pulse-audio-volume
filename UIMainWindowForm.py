@@ -33,6 +33,9 @@ class Ui_MainWindow(object):
         self.volumeDown = QtWidgets.QPushButton(self.centralwidget)
         self.volumeDown.setGeometry(QtCore.QRect(238, 51, 51, 25))
         self.volumeDown.setObjectName("volumeDown")
+        self.volumeMute = QtWidgets.QPushButton(self.centralwidget)
+        self.volumeMute.setGeometry(QtCore.QRect(306, 52, 70, 25))
+        self.volumeMute.setObjectName("volumeMute")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -43,3 +46,4 @@ class Ui_MainWindow(object):
         self.volumenStepLabel.setText(_translate("MainWindow", "Volume step"))
         self.volumeUp.setText(_translate("MainWindow", "Up"))
         self.volumeDown.setText(_translate("MainWindow", "Down"))
+        self.volumeMute.setText(_translate("MainWindow", "Mute"))

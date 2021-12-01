@@ -13,6 +13,7 @@ class MainWindow(QMainWindow):
         self.__pulse = None
         self.__sinks = list()
         self.__activeSink = None
+        self.__isMuted = None
 
         self.__ui = Ui_MainWindow()
         self.__ui.setupUi(self)
@@ -44,6 +45,10 @@ class MainWindow(QMainWindow):
 
         self.__pulse = pulse
 
+        self.__ui.volumeMute.clicked.connect(self.__volume_mute_toggle)
+
+        self.__volume_state()
+
     def __find_sink_by_description(self, description):
         for sink in self.__sinks:
             if sink.description == description:
@@ -52,6 +57,7 @@ class MainWindow(QMainWindow):
     def __set_active_sink(self):
         item = str(self.__ui.sinks.currentText())
         self.__activeSink = self.__find_sink_by_description(item)
+        # self.__volume_state()
 
     def __volume_up(self):
         # self.__pulse.volume_change_all_chans(self.__activeSink, float(self.__ui.volumeStep.currentText()))
@@ -64,3 +70,35 @@ class MainWindow(QMainWindow):
         # self.__pulse.volume_change_all_chans(self.__activeSink, -1 * float(self.__ui.volumeStep.currentText()))
         command = "pactl set-sink-volume '" + self.__activeSink.name + "' " + "-" + self.__ui.volumeStep.currentText()
         os.system(command)
+
+    def __get_volume(self):
+        return self.__activeSink.volume.values[0]
+
+    def __volume_mute_toggle(self):
+        if self.__isMuted:
+            self.__unmute()
+        else:
+            self.__mute()
+
+    def __mute(self):
+        # pactl set-sink-mute 'alsa_output.pci-0000_00_1f.3.analog-stereo' true
+        command = "pactl set-sink-mute '"  + self.__activeSink.name + "' true"
+        os.system(command)
+        self.__ui.volumeMute.setText('Unmute')
+        self.__isMuted = True
+
+    def __unmute(self):
+        # pactl set-sink-mute 'alsa_output.pci-0000_00_1f.3.analog-stereo' true
+        command = "pactl set-sink-mute '"  + self.__activeSink.name + "' false"
+        os.system(command)
+        self.__ui.volumeMute.setText('Mute')
+        self.__isMuted = False
+
+    def __volume_state(self):
+        volume = self.__get_volume()
+        if volume > 0:
+            self.__isMuted = False
+            self.__ui.volumeMute.setText('Mute')
+        else:
+            self.__isMuted = True
+            self.__ui.volumeMute.setText('Unmute')

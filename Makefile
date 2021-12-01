@@ -41,3 +41,8 @@ build:
 	cd ..
 	@echo "TAG: ${GIT_TAG}"
 .PHONY: build
+
+build-single:
+	rm -rf ./build ./dist
+	pyinstaller main.py -n PulseAudioVolume --windowed --onefile
+.PHONY: build-single

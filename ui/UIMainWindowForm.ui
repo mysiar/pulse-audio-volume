@@ -7,14 +7,73 @@
     <x>0</x>
     <y>0</y>
     <width>503</width>
-    <height>197</height>
+    <height>89</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string/>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QComboBox" name="sinks">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>461</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="volumenStepLabel">
+    <property name="geometry">
+     <rect>
+      <x>23</x>
+      <y>55</y>
+      <width>91</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Volume step</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="volumeStep">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>51</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="volumeUp">
+    <property name="geometry">
+     <rect>
+      <x>177</x>
+      <y>51</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Up</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="volumeDown">
+    <property name="geometry">
+     <rect>
+      <x>238</x>
+      <y>51</y>
+      <width>51</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Down</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <resources/>
  <connections/>

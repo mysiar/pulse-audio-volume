@@ -32,3 +32,12 @@ ui:
 run:
 	python3 main.py
 .PHONY: run
+
+build:
+	rm -rf ./build ./dist
+	pyinstaller main.py -n PulseAudioVolume --windowed
+	cd dist; \
+	tar zcvf ../dist-out/PulseAudioVolume-"${GIT_TAG}".linux.tgz PulseAudioVolume/; \
+	cd ..
+	@echo "TAG: ${GIT_TAG}"
+.PHONY: build

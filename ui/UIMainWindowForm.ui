@@ -73,6 +73,19 @@
      <string>Down</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="volumeMute">
+    <property name="geometry">
+     <rect>
+      <x>306</x>
+      <y>52</y>
+      <width>70</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mute</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

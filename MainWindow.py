@@ -56,15 +56,18 @@ class MainWindow(QMainWindow):
     def __volume_up(self):
         # self.__pulse.volume_change_all_chans(self.__activeSink, float(self.__ui.volumeStep.currentText()))
         # pactl set-sink-volume 'alsa_output.pci-0000_00_1f.3.analog-stereo' +10%
-        # due to Assertion 'c' failed at pulse/introspect.c:1421, function pa_context_set_sink_volume_by_index()
+        # due to Assertion 'c' failed at pulse/introspect.c:1421, function
+        # pa_context_set_sink_volume_by_index()
         sink = self.__get_current_sink()
-        command = "pactl set-sink-volume '" + sink.name + "' " + "+" + self.__ui.volumeStep.currentText()
+        command = "pactl set-sink-volume '" + sink.name + \
+            "' " + "+" + self.__ui.volumeStep.currentText()
         os.system(command)
 
     def __volume_down(self):
         # self.__pulse.volume_change_all_chans(self.__activeSink, -1 * float(self.__ui.volumeStep.currentText()))
         sink = self.__get_current_sink()
-        command = "pactl set-sink-volume '" + sink.name + "' " + "-" + self.__ui.volumeStep.currentText()
+        command = "pactl set-sink-volume '" + sink.name + \
+            "' " + "-" + self.__ui.volumeStep.currentText()
         os.system(command)
 
     def __get_volume(self):
@@ -88,13 +91,14 @@ class MainWindow(QMainWindow):
     def __unmute(self):
         sink = self.__get_current_sink()
         # pactl set-sink-mute 'alsa_output.pci-0000_00_1f.3.analog-stereo' true
-        command = "pactl set-sink-mute '"  + sink.name + "' false"
+        command = "pactl set-sink-mute '" + sink.name + "' false"
         os.system(command)
         self.__ui.volumeMute.setText('Mute')
         sink.muted = False
 
     def __get_current_sink(self):
-        return self.__get_sink_by_description(str(self.__ui.sinks.currentText()))
+        return self.__get_sink_by_description(
+            str(self.__ui.sinks.currentText()))
 
     def __get_sink_by_description(self, description):
         for sink in self.__sinks:
